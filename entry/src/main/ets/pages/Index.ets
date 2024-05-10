@@ -6,9 +6,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+        Text('Index').width('100%')
       }
       .width('100%')
     }
