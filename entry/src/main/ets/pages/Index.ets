@@ -1,12 +1,13 @@
+import topPart from '../view/Index/topPart';
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
 
   build() {
     Row() {
       Column() {
-        Text('Index').width('100%')
+        topPart({img:$r('app.media.startIcon')})
       }
       .width('100%')
     }
