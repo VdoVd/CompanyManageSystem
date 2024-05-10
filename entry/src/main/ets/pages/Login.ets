@@ -1,13 +1,18 @@
-import { router } from '@kit.ArkUI'
+import { promptAction, router } from '@kit.ArkUI'
 import { Login } from '../common/http/req'
 
 @Entry
 @Component
 struct Index {
+
   @State username:string=''
+
   @State password:string=''
+
   build() {
+
     Row() {
+
       Column({space:25}) {
 
         Text('CRM')
@@ -20,20 +25,23 @@ struct Index {
         TextInput({placeholder:'密码',text:$$this.password})
           .type(InputType.Password)
 
-        // Row({space:15}){
-        //
-        //   TextInput({placeholder:'验证码'}).layoutWeight(1)
-        //
-        //
-        //
-        // }
+        Button('进入').width('100%').onClick(async ()=>{
 
-        Button('进入').width('100%').onClick(()=>{
-          console.log(`username:${this.username},password:${this.password}`)
-          Login(this.username,this.password)
-          // router.pushUrl({
-          //   url:"pages/Index"
-          // })
+
+          if(this.username===''){
+
+              promptAction.showToast({message:'用户名为空'})
+
+          }else if(this.password===''){
+
+              promptAction.showToast({message:'密码为空'})
+
+          }else {
+
+            await this.login()
+
+          }
+
         })
 
       }
@@ -46,4 +54,41 @@ struct Index {
     .width('100%')
     .backgroundColor('rgb( 24,144,255)')
   }
+
+  private async login() {
+
+    console.log(`username:${this.username},password:${this.password}`)
+
+    let result = await Login(this.username, this.password)
+
+    if (result) {
+
+      promptAction.showToast({
+
+        message: '登录成功'
+
+      })
+
+      setTimeout(() => {
+
+        router.pushUrl({
+
+          url: "pages/Index"
+
+        })
+
+      }, 1000)
+
+    } else {
+
+      promptAction.showToast({
+
+        message: '登录失败'
+
+      })
+
+    }
+
+  }
+
 }
