@@ -4,3 +4,4 @@ export const getRGB=()=>`rgb(${getNum()},${getNum()},${getNum()})`
 
 
 
+export const okok=()=>consolog.log('okok')
