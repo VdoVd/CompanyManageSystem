@@ -46,7 +46,7 @@ public class UserManage {
 //            @RequestParam("create_time") Date create_time
 
             ) {
-        List<SystemUser> list=systemUserMapper.getAllUser();
+        SystemUser systemUser=systemUserMapper.queryUser(username,phonenumber,state);
         allReturn.setCode(200);
         allReturn.setMsg("查找用户成功");
         allReturn.setSuccess(true);

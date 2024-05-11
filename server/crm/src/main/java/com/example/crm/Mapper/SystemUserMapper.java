@@ -15,6 +15,6 @@ public interface SystemUserMapper {
 
     public List<SystemUser> getAllUser();
 
-    public SystemUser queryUser(String username, String phoneNumber, Integer state, Date create_time);
+    public SystemUser queryUser(String username, String phoneNumber, Integer state);
 
 }

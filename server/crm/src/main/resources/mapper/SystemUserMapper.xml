@@ -13,4 +13,8 @@
         select * from sys_user
     </select>
 
+    <select id="queryByName" resultType="com.example.crm.pojo.SystemUser">
+        select * from sys_user where user_name=#{username} and phonenumber=#{phoneNumber} and state=#{state}
+    </select>
+
 </mapper>
