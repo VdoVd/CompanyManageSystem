@@ -22,7 +22,7 @@ public class SystemUser {
     String sex;//
     String avatar;//
     String password;//
-    String status;
+    Integer status;
     String del_flag;//
     String login_ip;//
     Date login_date;//

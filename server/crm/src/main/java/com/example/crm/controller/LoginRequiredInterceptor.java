@@ -24,28 +24,21 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
 
         String token = request.getHeader("token");
 
-        System.out.println("token:"+token);
-
         if(handler instanceof HandlerMethod){
 
             HandlerMethod handlerMethod=(HandlerMethod) handler;
 
             Method method = handlerMethod.getMethod();
 
-            System.out.println("method"+method.toString());
-
             if(method.isAnnotationPresent(UserLoginToken.class)){
 
                 UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
 
-                System.out.println("userLogin:"+userLoginToken.required());
                 if(userLoginToken.required()){
-                    System.out.println("token is empty");
                     if (token==null){
                         returnJson(response,"token为空,请重新登录");
                         throw new RuntimeException("token为空,请重新登录");
                     }
-                    System.out.println("token is not empty");
                     boolean result= jwtTool.verify(token);
                     if(result){
                         System.out.println("token is true");

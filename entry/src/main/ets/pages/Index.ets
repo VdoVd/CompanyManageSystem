@@ -1,7 +1,8 @@
 import {
   contactManageList,
   countManageList, customManageList, dataManageList, orderManageList, systemManageList } from '../common/data';
-import { test } from '../common/http/req';
+import { httpClass, test } from '../common/http/req';
+import { SysUser } from '../common/Model';
 import content from '../view/Index/content';
 import topPart from '../view/Index/topPart';
 
@@ -15,7 +16,11 @@ struct Index {
         Column({space:15}) {
           topPart({img:$r('app.media.avatar01')})
             .onClick(()=>{
-              test()
+
+              const arr=httpClass.get<SysUser[]>('/users')
+
+              console.log(`arrs:${JSON.stringify(arr)}`)
+
             })
 
           content({list:systemManageList})

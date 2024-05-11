@@ -54,3 +54,28 @@ export const test= async ()=>{
   console.log(`http test:${JSON.stringify(res.result)}`)
 
 }
+
+
+export class httpClass{
+
+  private static  baseUrl='http://192.168.110.1:8080'
+
+  public  static async get<T>(url:string){
+    let req=http.createHttp()
+
+    const res=await req.request(`${baseUrl}${url}`,{
+      method:http.RequestMethod.GET,
+      header:{
+        token:tokenStore.getToken()
+      }
+    })
+
+    const result= JSON.parse(res.result.toString()) as allResponse<T>
+
+    console.log(`get result:${JSON.stringify(result)}`)
+
+    return result.data
+  }
+
+
+}

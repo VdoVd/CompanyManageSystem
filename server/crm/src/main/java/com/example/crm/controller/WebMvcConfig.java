@@ -10,9 +10,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
 
         registry.addInterceptor(new LoginRequiredInterceptor())
-                .addPathPatterns("/home","/test")
+                .addPathPatterns("/home","/test","/user*")
                 .excludePathPatterns("/login");
-
 
     }
 

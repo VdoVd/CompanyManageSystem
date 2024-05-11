@@ -17,7 +17,7 @@ export interface SysUser{
   sex: string
   avatar: string
   password: string
-  status: string
+  status: number
   del_flag: string
   login_ip: string
   login_date: string

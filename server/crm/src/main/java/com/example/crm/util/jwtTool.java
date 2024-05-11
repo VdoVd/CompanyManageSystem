@@ -56,11 +56,7 @@ public class jwtTool {
 
             JWTVerifier verifier=JWT.require(algorithm).build();
 
-            System.out.println("before verify");
-
             DecodedJWT jwt = verifier.verify(token);
-
-            System.out.println("after verify");
 
             return true;
 
