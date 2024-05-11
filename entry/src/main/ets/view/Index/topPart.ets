@@ -9,23 +9,25 @@ export default struct topPart{
 
   build() {
 
-    Column(){
+    Row({space:10}){
 
-      Text('CRM SYSTEM').backgroundColor(Color.White)
+      Text('CRM SYSTEM').fontColor(Color.White).fontSize(13).fontWeight(FontWeight.Bolder)
 
-      Row(){
+      Row({space:15}){
 
         Image(this.img)
-          .width(60)
+          .width(30)
           .borderRadius(30)
 
-        Text('')
-          .backgroundColor(Color.White)
+        Text(this.user.user_name)
+          .fontColor(Color.White).fontSize(15)
 
       }.width('100%')
       .justifyContent(FlexAlign.Center)
 
     }.backgroundColor('rgb( 43, 48, 59)')
+    .padding(20)
+    .justifyContent(FlexAlign.SpaceBetween)
 
   }
 

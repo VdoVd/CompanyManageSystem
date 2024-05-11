@@ -1,4 +1,5 @@
 import { http } from '@kit.NetworkKit'
+import { ExpectExtend } from '@ohos/hypium'
 import { allResponse, SysUser, SysUserWithToken } from '../Model'
 import { tokenStore, userStore } from '../store'
 
@@ -28,11 +29,28 @@ export const Login= async (username:string,password:string)=>{
 
     tokenStore.setToken(result.data.token)
 
-    userStore.setUser(result.data.SystemUser)
+    console.log(`user:${result.data.systemUser}`)
+
+    userStore.setUser(result.data.systemUser)
 
     return true
   }else {
     return false
   }
+
+}
+
+export const test= async ()=>{
+
+  let req=http.createHttp()
+
+  const res=await req.request(`${baseUrl}/test`,{
+    method:http.RequestMethod.GET,
+    header:{
+      token:tokenStore.getToken()
+    }
+  })
+
+  console.log(`http test:${JSON.stringify(res.result)}`)
 
 }

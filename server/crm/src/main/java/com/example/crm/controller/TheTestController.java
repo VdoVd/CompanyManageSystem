@@ -1,6 +1,7 @@
 package com.example.crm.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.crm.Mapper.TestClassMapper;
 import com.example.crm.interfacePackage.UserLoginToken;
 import com.example.crm.pojo.TestClass;
@@ -31,23 +32,11 @@ public class TheTestController {
     @GetMapping("/test")
     public String test(){
 
-        String token=jwtTool.getToken("tom","123456");
+        JSONObject jsonObject=new JSONObject();
 
-        System.out.println("jwt is:"+token);
+        jsonObject.put("test","ok");
 
-        boolean result = jwtTool.verify(token);
-
-//        if(result){
-//
-//            System.out.println("验证成功");
-//
-//            return "check success";
-//
-//        }else {
-//
-//        }
-        k.setName("poegjrg");
-        return new Gson().toJson(k);
+        return jsonObject.toJSONString();
 
     }
 }

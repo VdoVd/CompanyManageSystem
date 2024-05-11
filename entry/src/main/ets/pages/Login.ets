@@ -5,9 +5,13 @@ import { Login } from '../common/http/req'
 @Component
 struct Index {
 
-  @State username:string=''
+  @State username:string='admin'
 
-  @State password:string=''
+  @State password:string='123456'
+
+  onPageShow(): void {
+    this.login()
+  }
 
   build() {
 

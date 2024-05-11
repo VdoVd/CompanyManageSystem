@@ -14,9 +14,9 @@ import java.util.Map;
 @Component
 public class jwtTool {
 
-    private static final long EXPIRE =  60 * 60 ;
+    private static final long EXPIRE =  60 * 60*100000 ;
 
-    private static final String TOKEN_PREFIX = "Bearer ";
+    private static final String TOKEN_PREFIX = "Bearer";
 
     public static String getToken(String username,String password){
 
@@ -56,11 +56,17 @@ public class jwtTool {
 
             JWTVerifier verifier=JWT.require(algorithm).build();
 
+            System.out.println("before verify");
+
             DecodedJWT jwt = verifier.verify(token);
+
+            System.out.println("after verify");
 
             return true;
 
         }catch (Exception e){
+
+            System.out.println("token认证失败");
 
             e.printStackTrace();
 

@@ -28,6 +28,20 @@ export interface SysUser{
 }
 
 export interface SysUserWithToken{
-  SystemUser:SysUser
+  systemUser:SysUser
   token:string
+}
+
+export interface contentInterface{
+  title:string
+  list:homeItem[]
+}
+
+export interface homeItem{
+  name:string
+  router:string
+}
+
+export interface routerGetString{
+  title:string
 }
