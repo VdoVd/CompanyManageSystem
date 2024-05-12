@@ -10,9 +10,6 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 public class LoginController {
 
@@ -37,7 +34,7 @@ public class LoginController {
         if(user.getPassword().equals(systemLoginRequest.getPassword())){
             String token=jwtTool.getToken(systemLoginRequest.getUsername(),systemLoginRequest.getPassword());
             allReturn.setCode(200);
-            allReturn.setMsg("登录成功");
+            allReturn.setMessage("登录成功");
             allReturn.setSuccess(true);
             allReturn.setData(user);
             systemUserWithToken.setSystemUser(user);
@@ -48,7 +45,7 @@ public class LoginController {
             return new Gson().toJson(allReturn);
         }else {
             allReturn.setCode(400);
-            allReturn.setMsg("登录失败");
+            allReturn.setMessage("登录失败");
             allReturn.setSuccess(false);
             allReturn.setData(new Object());
             System.out.println("---------------------------");

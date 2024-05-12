@@ -1,17 +1,14 @@
-package com.example.crm.result;
+package com.example.crm.pojo.sysmanage;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
-public class AllReturn {
-    private int code;
-    private String message;
-    private Object data;
-    private boolean success;
+public class deleteUser {
+    String username;
 }

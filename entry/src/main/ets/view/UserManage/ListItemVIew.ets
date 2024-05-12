@@ -15,7 +15,7 @@ export default struct ListItemView{
         commonRow({title:'手机号',val:this.obj.phonenumber})
         commonRow({title:'状态',val:this.obj.status===1?'停用':'正常'})
         commonRow({title:'创建时间',val:this.obj.create_time})
-        actionView()
+        actionView({item:this.obj})
     }.margin({bottom:10})
     .borderRadius(20).width('100%')
     .height(220)

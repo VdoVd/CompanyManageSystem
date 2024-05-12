@@ -1,9 +1,11 @@
+import { ExpectExtend } from '@ohos/hypium'
+import { IntentionCode } from '@kit.InputKit'
 
 export interface allResponse<T>{
-  message:string
   code:number
-  success:boolean
+  message:string
   data:T
+  success:boolean
 }
 
 export interface SysUser{
@@ -45,3 +47,13 @@ export interface homeItem{
 export interface routerGetString{
   title:string
 }
+
+export interface login{
+  username:string,
+  password:string
+}
+
+export interface deleteByNameInterface{
+  username:string
+}
+

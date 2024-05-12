@@ -1,11 +1,9 @@
 package com.example.crm.Mapper;
 
 import com.example.crm.pojo.SystemUser;
-import com.example.crm.pojo.TestClass;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -15,6 +13,11 @@ public interface SystemUserMapper {
 
     public List<SystemUser> getAllUser();
 
-    public SystemUser queryUser(String username, String phoneNumber, Integer state);
+    public List<SystemUser> queryUsers(String username, String phonenumber, Integer state);
 
+    public boolean deleteByName(String username);
+
+    public boolean updateUser(String nickname,String username,String phonenumber,String status);
+
+    public boolean updatePassword(String username,String password);
 }
