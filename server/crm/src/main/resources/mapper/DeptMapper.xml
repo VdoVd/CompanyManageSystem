@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.crm.Mapper.DeptMapper">
+
+
+    <select id="query" resultType="com.example.crm.pojo.dept.dept">
+        select * from sys_dept where dept_id=#{name}
+    </select>
+
+    <select id="getAll" resultType="com.example.crm.pojo.dept.dept">
+        select * from sys_dept
+    </select>
+
+    <select id="queryUsers" resultType="com.example.crm.pojo.dept.dept">
+        select * from sys_user where user_name like concat('%',#{username},'%') and phonenumber like concat('%',#{phonenumber},'%') and status  like concat('%',#{state},'%')
+    </select>
+
+    <delete id="deleteByName" >
+        delete from sys_user where user_name=#{username}
+    </delete>
+
+    <update id="updateUser">
+        update sys_user set nick_name=#{nickname},user_name=#{username},status=#{status},phonenumber=#{phonenumber} where user_name=#{username}
+    </update>
+
+    <update id="updatePassword">
+        update sys_user set password=#{password} where user_name=#{username}
+    </update>
+
+</mapper>
