@@ -17,12 +17,12 @@
         select * from sys_user where user_name like concat('%',#{username},'%') and phonenumber like concat('%',#{phonenumber},'%') and status  like concat('%',#{state},'%')
     </select>
 
-    <delete id="deleteByName" >
-        delete from sys_user where user_name=#{username}
+    <delete id="delete" >
+        delete from sys_dept where dept_id=#{id}
     </delete>
 
-    <update id="updateUser">
-        update sys_user set nick_name=#{nickname},user_name=#{username},status=#{status},phonenumber=#{phonenumber} where user_name=#{username}
+    <update id="update">
+        update sys_dept set dept_name=#{name},leader=#{leader},phone=#{phone},status=#{status} where dept_id=#{id}
     </update>
 
     <update id="updatePassword">

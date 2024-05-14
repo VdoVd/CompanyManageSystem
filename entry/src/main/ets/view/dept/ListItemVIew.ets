@@ -11,7 +11,7 @@ export default struct ListItemView{
   build() {
     Column(){
         commonRow({title:"编号",val:`${this.index}`})
-        commonRow({title:"部门名称名称",val:this.obj.dept_name})
+        commonRow({title:"部门名称",val:this.obj.dept_name})
         commonRow({title:'部门id',val:this.obj.dept_id.toString()})
         commonRow({title:'负责人',val:this.obj.leader})
         commonRow({title:'手机号',val:this.obj.phone})

@@ -1,13 +1,11 @@
-import { httpClass } from '../../common/http/req'
-import { allResponse, login, SysUser } from '../../common/Model'
+import { allResponse, login, SysUser, updateDeptInterface } from '../../common/Model'
 import searchView from './searchView'
 import ListView from './ListView'
 import navHeader from '../../common/navHeader'
 import {deleteByNameDialog} from '../../common/dialog'
 import { promptAction } from '@kit.ArkUI'
 import middleText from '../../common/middleText'
-import { updateUser, updateUserInterface } from '../../common/http/manageSystem'
-import { dept, findDept, getAllDept } from '../../common/http/dept'
+import { deleteDepReq, dept, findDept, getAllDept, updateDeptReq } from '../../common/http/dept'
 
 @Component
 export default struct deptContent{
@@ -19,9 +17,8 @@ export default struct deptContent{
   @State isClickDept:boolean=false
   @State isClickList:boolean=true
   @State loadingSearch:boolean=true
-  @Provide @Watch("deleteByNameFunc") deleteName:string=''
-  @Provide  obj:SysUser={} as SysUser
-  @Provide @Watch('updateUserFunc') updateDialogFlag:boolean=false
+  @Provide @Watch("deleteByIdFunc") deleteId:string=''
+  @Provide  obj:dept={} as dept
   @Provide
   username:string=''
 
@@ -34,46 +31,35 @@ export default struct deptContent{
   @Provide
   createTime:Date=new Date()
 
-  deleteByNameFunc(){
-    if(this.deleteName!='')
-      this.deleteByNameController.open()
+  @Provide @Watch("updateDept") updateDeptFlag:boolean=false
+
+  async deleteByIdFunc(){
+    if(this.deleteId!='')
+    {
+      let deleteObj:updateDeptInterface={name:this.obj.dept_name,id:this.obj.dept_id.toString(),status:this.obj.status,leader:this.obj.leader,phone:this.phonenumber}
+      const res =await deleteDepReq(deleteObj)
+      if(res){
+        promptAction.showToast({message:'删除成功'})
+      }else {
+        promptAction.showToast({message:'删除失败'})
+      }
+      this.deleteId=''
+    }
     else
       this.getData()
   }
 
-  async updateUserFunc(){
-    if(this.updateDialogFlag){
 
-      this.updateController.open()
-
-    }else {
-
-      let theObj:updateUserInterface={} as updateUserInterface
-      theObj.nickname=this.obj.user_name
-      theObj.username=this.obj.nick_name
-      theObj.status=this.obj.status.toString()
-      theObj.phonenumber=this.obj.phonenumber
-      const res=await updateUser(theObj)
-
-      if(res){
-        promptAction.showDialog({message:'update success'})
-      }else{
-        promptAction.showDialog({message:'update failed'})
-      }
-
-      this.getData()
-
-    }
-
-  }
   deleteByNameController:CustomDialogController=new CustomDialogController({
     builder:deleteByNameDialog(),
     alignment:DialogAlignment.Center
   })
+
   updateController:CustomDialogController=new CustomDialogController({
     builder:updateUserDialog(),
     alignment:DialogAlignment.Center
   })
+
   async searchUser(){
 
     await this.getSearchData()
@@ -119,6 +105,24 @@ export default struct deptContent{
 
   }
 
+  private async updateDept(){
+
+    if(this.updateDeptFlag){
+      this.updateController.open()
+
+    }else{
+      const res = await updateDeptReq(this.obj.dept_name,this.obj.leader,this.obj.phone,this.obj.status,this.obj.dept_id.toString())
+
+      if(res){
+        promptAction.showToast({message:'编辑部门成功'})
+      }else {
+        promptAction.showToast({message:'编辑部门失败'})
+      }
+
+      await this.getData()
+    }
+  }
+
   build() {
     Column({space:7}){
 
@@ -131,9 +135,12 @@ export default struct deptContent{
         })
       }
 
-      navHeader({isShow:this.isClickDept,title:'部门编辑'})
+      navHeader({isShow:this.isClickDept,title:'添加部门'})
       if(this.isClickDept) {
-        Button('添加用户')
+        Button('添加部门')
+          .onClick(()=>{
+            this.updateDeptFlag=true
+          })
       }
 
       navHeader({isShow:this.isClickList,title:'部门列表'})
@@ -152,12 +159,12 @@ export default struct deptContent{
 export  struct updateUserDialog{
 
   controller:CustomDialogController
-  @Consume obj:SysUser
-  @State tmp:SysUser=this.obj
-  @Consume updateDialogFlag:boolean
-  @State username:string=this.tmp.user_name
-  @State nickname:string=this.tmp.nick_name
-  @State phonenumber:string=this.tmp.phonenumber
+  @Consume obj:dept
+  @State tmp:dept=this.obj
+  @Consume updateDeptFlag:boolean
+  @State username:string=this.tmp.dept_name
+  @State nickname:string=this.tmp.leader
+  @State phonenumber:string=this.tmp.phone
   @State status:string=this.tmp.status.toString()
 
   build() {
@@ -167,15 +174,15 @@ export  struct updateUserDialog{
         middleText({name:'用户名称'})
         TextInput({text:$$this.username})
           .onChange(()=>{
-            this.tmp.user_name=this.username
+            this.tmp.dept_name=this.username
           }).layoutWeight(1)
 
       }
       Row({space:15}){
-        middleText({name:'账号'})
+        middleText({name:'负责人'})
         TextInput({text:$$this.nickname})
           .onChange(()=>{
-            this.tmp.nick_name=this.nickname
+            this.tmp.leader=this.nickname
           }).layoutWeight(1)
 
       }
@@ -183,7 +190,7 @@ export  struct updateUserDialog{
         middleText({name:'手机号码'})
         TextInput({text:$$this.phonenumber})
           .onChange(()=>{
-            this.tmp.phonenumber=this.phonenumber
+            this.tmp.phone=this.phonenumber
           }).layoutWeight(1)
 
       }
@@ -191,20 +198,20 @@ export  struct updateUserDialog{
         middleText({name:'状态'})
         TextInput({text:$$this.status})
           .onChange(()=>{
-            this.tmp.status=parseInt(this.status)
+            this.tmp.status=this.status
           }).layoutWeight(1)
 
       }
       Row({space:15}){
         Button('取消')
           .onClick(()=>{
-            this.updateDialogFlag=false
+            this.updateDeptFlag=false
             this.obj=this.tmp
             this.controller.close()
           })
         Button('确定')
           .onClick(()=>{
-            this.updateDialogFlag=false
+            this.updateDeptFlag=false
             this.obj=this.tmp
             this.controller.close()
           })

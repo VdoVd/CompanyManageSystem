@@ -1,4 +1,6 @@
 import { httpClass } from './req'
+import { asset } from '@kit.AssetStoreKit'
+import { updateDeptInterface } from '../Model'
 
 export interface  updateUserInterface{
   nickname:string,
@@ -36,4 +38,21 @@ export const findDept = async (name:string) =>{
   const dept = await httpClass.get<dept>(`/dept/find?name=${name}`)
 
   return dept
+}
+
+export const updateDeptReq = async (name:string,leader:string,phone:string,status:string,id:string)=>{
+
+  let obj:updateDeptInterface={name:name,leader:leader,phone:phone,status:status,id:id}
+
+  const res = await httpClass.post<boolean>('/dept/update',obj)
+
+  return res
+}
+
+export const deleteDepReq = async (obj:updateDeptInterface) =>{
+
+  const res = await httpClass.post<boolean>('/dept/delete',obj)
+
+  return res
+
 }

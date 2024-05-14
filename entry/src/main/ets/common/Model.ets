@@ -57,4 +57,10 @@ export interface deleteByNameInterface{
   username:string
 }
 
-
+export interface updateDeptInterface{
+  name:string
+  leader:string
+  phone:string
+  status:string
+  id:string
+}

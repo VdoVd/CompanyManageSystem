@@ -6,9 +6,9 @@ import { getRGB } from '../../common/util'
 @Component
 export default struct actionView{
   @Prop item:dept
-  @Consume deleteName:string
+  @Consume deleteId:string
   @Consume obj:dept
-  @Consume updateDialogFlag:boolean
+  @Consume updateDeptFlag:boolean
   build() {
     Row(){
       Row(){
@@ -20,13 +20,13 @@ export default struct actionView{
         smallText({name:'修改',color:Color.White})
           .onClick(()=>{
             this.obj=this.item
-            this.updateDialogFlag=true
+            this.updateDeptFlag=true
           })
         smallText({name:'删除',color:Color.White})
           .onClick(()=>{
-            this.deleteName=this.item.dept_name
+            this.obj=this.item
+            this.deleteId=this.item.dept_id.toString()
           })
-        smallText({name:'重置密码',color:Color.White})
       }.layoutWeight(1).padding({left:20}).backgroundColor(Color.Black).padding(7)
     }.width('85%')
   }
