@@ -1,7 +1,7 @@
 import { allResponse, login, SysUser, updateDeptInterface } from '../../common/Model'
 import searchView from './searchView'
 import ListView from './ListView'
-import navHeader from '../../common/navHeader'
+import navHeader from '../../common/components/navHeader'
 import {deleteByNameDialog} from '../../common/dialog'
 import { promptAction } from '@kit.ArkUI'
 import middleText from '../../common/middleText'

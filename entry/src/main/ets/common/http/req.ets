@@ -59,6 +59,7 @@ export const test= async ()=>{
 export class httpClass {
   private static baseUrl = 'http://192.168.110.1:8080'
 
+
   public static async get<T>(url: string) {
     let req = http.createHttp()
 

@@ -1,5 +1,5 @@
-import smallText from './smallText'
-import { getRGB } from './util'
+import smallText from '../smallText'
+import { getRGB } from '../util'
 
 @Component
 export default struct commonRow{

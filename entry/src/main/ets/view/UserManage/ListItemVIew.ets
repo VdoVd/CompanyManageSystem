@@ -1,4 +1,4 @@
-import commonRow from '../../common/commonRow'
+import commonRow from '../../common/components/commonRow'
 import { SysUser } from '../../common/Model'
 import actionView from './actionView'
 

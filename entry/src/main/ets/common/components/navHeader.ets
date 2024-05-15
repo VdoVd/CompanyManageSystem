@@ -1,4 +1,4 @@
-import { getRGB } from './util'
+import { getRGB } from '../util'
 
 @Component
 export default struct navHeader{
