@@ -4,6 +4,7 @@ import UserManage from '../view/UserManage/UserManage'
 import { usbManager } from '@kit.BasicServicesKit'
 import deptContent from '../view/dept/deptContent'
 import roleVIew from '../view/role/roleView'
+import menuVIew from '../view/menu/menuView'
 
 @Entry
 @Component
@@ -18,6 +19,8 @@ struct DetailPage {
         deptContent().height('100%')
       }else if(this.title==='角色管理'){
         roleVIew().height('100%')
+      }else if(this.title==='菜单管理'){
+        menuVIew().height('100%')
       }
 
 

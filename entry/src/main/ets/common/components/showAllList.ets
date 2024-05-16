@@ -1,5 +1,6 @@
 import { showAllRole } from '../../view/role/roleView'
 import actionView from './actionView'
+import commonRow from './commonRow'
 import showAllItem from './showAllItem'
 
 @Component
@@ -11,6 +12,7 @@ export default struct showAllList{
       ForEach(this.dataModel,(item:Object,index:number)=>{
         ListItem(){
           Column(){
+            commonRow({title:'编号',val:`${index+1}`})
             showAllItem({index:index,item:item})
             actionView()
           }

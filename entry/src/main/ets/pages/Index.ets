@@ -12,35 +12,45 @@ struct Index {
 
   build() {
     Row() {
-      Scroll(){
         Column({space:15}) {
-          topPart({img:$r('app.media.avatar01')})
-            .onClick(()=>{
 
-              const arr=httpClass.get<SysUser[]>('/users')
+          List(){
+            ListItem(){
+              topPart({img:$r('app.media.avatar01')})
+                .onClick(()=>{
 
-              console.log(`arrs:${JSON.stringify(arr)}`)
+                  const arr=httpClass.get<SysUser[]>('/users')
 
-            })
+                  console.log(`arrs:${JSON.stringify(arr)}`)
 
-          content({list:systemManageList})
-
-          content({list:dataManageList})
-
-          content({list:customManageList})
-
-          content({list:countManageList})
-
-          content({list:orderManageList})
-
-          content({list:contactManageList})
-
+                })
+            }
+            ListItem(){
+              content({list:systemManageList})
+            }
+            ListItem(){
+              content({list:dataManageList})
+            }
+            ListItem(){
+              content({list:customManageList})
+            }
+            ListItem(){
+              content({list:countManageList})
+            }
+            ListItem(){
+              content({list:orderManageList})
+            }
+            ListItem(){
+              content({list:contactManageList})
+            }
+          }.width('100%')
+          .height('100%')
         }
         .width('100%')
         .justifyContent(FlexAlign.Start)
         .alignSelf(ItemAlign.Start)
-      }.height('100%')
-      .scrollBar(BarState.Off)
+        .height('100%')
+
 
     }
     .height('100%')

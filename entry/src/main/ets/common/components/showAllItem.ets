@@ -14,13 +14,20 @@ export default struct showAllItem{
 
   vals:string[]=Object.values(this.item)
 
+  aboutToAppear(): void {
+    console.log(`items:${JSON.stringify(this.vals)}`)
+    this.AllKeys.forEach((item)=>{
+
+    })
+  }
+
   build() {
 
     Column(){
 
       ForEach(this.AllKeys,(item2:string,index:number)=>{
 
-        commonRow({title:item2,val:this.vals[index]})
+        commonRow({title:item2,val:this.vals[index]===''?'空':this.vals[index]})
 
       })
 
