@@ -4,7 +4,11 @@ import UserManage from '../view/UserManage/UserManage'
 import { usbManager } from '@kit.BasicServicesKit'
 import deptContent from '../view/dept/deptContent'
 import roleVIew from '../view/role/roleView'
+import activeVIew from '../view/active/activeView'
 import menuVIew from '../view/menu/menuView'
+import jobVIew from '../view/job/jobVIew'
+import dictVIew from '../view/dict/dictView'
+import opportunity from '../view/opportunity/opportunity'
 
 @Entry
 @Component
@@ -21,9 +25,15 @@ struct DetailPage {
         roleVIew().height('100%')
       }else if(this.title==='菜单管理'){
         menuVIew().height('100%')
+      }else if(this.title==='活动管理'){
+        activeVIew().height('100%')
+      }else if(this.title==='岗位管理'){
+        jobVIew().height('100%')
+      }else if(this.title==='字典管理'){
+        dictVIew().height('100%')
+      }else if(this.title==='商机'){
+        opportunity().height('100%')
       }
-
-
 
     }.title(this.title)
     .titleMode(NavigationTitleMode.Mini)

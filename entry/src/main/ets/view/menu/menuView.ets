@@ -26,7 +26,7 @@ export default struct menuVIew{
   }
 
   showAllObj:showAll={
-    name:'角色名称',
+    name:'菜单名称',
     status:'状态',
     perms:'权限标识',
     component:'组件地址',

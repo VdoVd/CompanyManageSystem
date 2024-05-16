@@ -4,34 +4,35 @@ import showAllList from '../../common/components/showAllList'
 import { GetAllMenu, GetSearchMenus } from '../../common/http/menu'
 
 export interface searchIt{
-  name:string
-  status:string
-  jid:string
+  cid:string
+  phone:string
 }
 
 export class  showAll implements searchIt{
-  jid: string='空'
-  name:string='空'
-  status:string='空'
-  sort:string='空'
-  create_time:string='空'
+  cid: string=''
+  name:string=''
+  goodSubject:string=''
+  goodCourse:string=''
+  phone: string=''
+  create_time:string=''
+
 }
 
 @Component
-export default struct jobVIew{
+export default struct contractVIew{
 
   @Provide
   searchData:searchIt={
-    name:'岗位名称',
-    status:'岗位状态',
-    jid:'岗位编号'
+    cid:'合同编号',
+    phone:'手机号'
   }
 
   showAllObj:showAll= {
-    name: '岗位名称',
-    status: '岗位状态',
-    jid: '岗位编号',
-    sort: '显示顺序',
+    name: '客户姓名',
+    cid: '合同编号',
+    goodSubject: '购买学科',
+    goodCourse: '购买课程',
+    phone: '手机号',
     create_time: '创建时间'
   }
 
@@ -52,7 +53,7 @@ export default struct jobVIew{
     if(this.searchFlag===false){
 
     }
-      // this.allList = await GetAllMenu()
+    // this.allList = await GetAllMenu()
   }
 
   async startSearchFunc(){
@@ -71,14 +72,14 @@ export default struct jobVIew{
 
     Column(){
 
-      navHeader({title:'搜索岗位', isShow:this.isShowSearch})
+      navHeader({title:'搜索合同', isShow:this.isShowSearch})
 
       if(this.isShowSearch===true)
         searchView({startSearch:()=>{
           this.startSearchFunc()
         }})
 
-      navHeader({isShow:this.isShowAll,title:'全部岗位'})
+      navHeader({isShow:this.isShowAll,title:'全部合同'})
         .margin({bottom:15})
 
       if(this.isShowAll){
