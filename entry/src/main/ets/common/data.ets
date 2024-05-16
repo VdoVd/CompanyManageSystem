@@ -70,7 +70,8 @@ export const countManageList:contentInterface={
     {name:'客户统计',router:''},
     {name:'销售统计',router:''},
     {name:'线索统计',router:''},
-    {name:'渠道统计',router:''}
+    {name:'渠道统计',router:''},
+    {name:'线索管理',router:''}
   ]
 }
 

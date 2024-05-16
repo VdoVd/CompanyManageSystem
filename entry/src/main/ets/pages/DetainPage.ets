@@ -9,6 +9,9 @@ import menuVIew from '../view/menu/menuView'
 import jobVIew from '../view/job/jobVIew'
 import dictVIew from '../view/dict/dictView'
 import opportunity from '../view/opportunity/opportunity'
+import contractVIew from '../view/contract/contract'
+import courseVIew from '../view/course/courseView'
+import clueVIew from '../view/clue/clueView'
 
 @Entry
 @Component
@@ -18,21 +21,38 @@ struct DetailPage {
     Navigation(){
 
       if(this.title==='用户管理'){
-        UserManage().height('100%')
+        UserManage()
+          .height('100%')
       }else if(this.title==='部门管理'){
-        deptContent().height('100%')
+        deptContent()
+          .height('100%')
       }else if(this.title==='角色管理'){
-        roleVIew().height('100%')
+        roleVIew()
+          .height('100%')
       }else if(this.title==='菜单管理'){
-        menuVIew().height('100%')
-      }else if(this.title==='活动管理'){
-        activeVIew().height('100%')
+        menuVIew()
+          .height('100%')
+      }else if(this.title==='活动管理'){////
+        activeVIew()
+          .height('100%')
       }else if(this.title==='岗位管理'){
-        jobVIew().height('100%')
-      }else if(this.title==='字典管理'){
-        dictVIew().height('100%')
-      }else if(this.title==='商机'){
-        opportunity().height('100%')
+        jobVIew()
+          .height('100%')
+      }else if(this.title==='字典管理'){//
+        dictVIew()
+          .height('100%')
+      }else if(this.title==='商机'){//
+        opportunity()
+          .height('100%')
+      }else if(this.title==='合同管理'){//
+        contractVIew()
+          .height('100%')
+      }else if(this.title==='课程维护'){//
+        courseVIew()
+          .height('100%')
+      }else if(this.title==='线索管理'){//
+        clueVIew()
+          .height('100%')
       }
 
     }.title(this.title)

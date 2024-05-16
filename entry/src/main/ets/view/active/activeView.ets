@@ -1,6 +1,7 @@
 import navHeader from '../../common/components/navHeader'
 import searchView from '../../common/components/searchView'
 import showAllList from '../../common/components/showAllList'
+import { GetAll, GetSearch } from '../../common/http/active'
 import { GetAllMenu, GetSearchMenus } from '../../common/http/menu'
 
 export interface searchIt{
@@ -50,16 +51,16 @@ export default struct activeVIew{
 
   private async getAllData() {
     if(this.searchFlag===false){
+      this.allList = await GetAll()
 
     }
-    // this.allList = await GetAllMenu()
   }
 
   async startSearchFunc(){
 
     this.isShowAll=false
     console.log(`search data:${JSON.stringify(this.searchData)} values:${JSON.stringify(this.sv)}`)
-    // this.allList=[...await GetSearchRoles(this.searchData,this.sv)]
+    this.allList=[...await GetSearch(this.searchData,this.sv)]
     // this.allList = await GetSearchMenus(this.searchData,this.sv)
 
     console.log(`start search:${this.allList}`)
